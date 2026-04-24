@@ -6,4 +6,17 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+// Configure TanStack Start in SPA mode and disable the Cloudflare Worker
+// adapter so the build emits a static client bundle suitable for Netlify
+// (or any static host). The build output goes to `dist/`.
+export default defineConfig({
+  cloudflare: false,
+  tanstackStart: {
+    spa: {
+      enabled: true,
+      prerender: {
+        outputPath: "/index.html",
+      },
+    },
+  },
+});
