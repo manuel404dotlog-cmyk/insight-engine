@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist/client"
+
+# SPA fallback: send every unmatched request to index.html so client-side
+# routing (TanStack Router) handles deep links and page refreshes.
+# (A duplicate of this rule is also emitted to dist/client/_redirects from
+# public/_redirects, so the fallback works even without netlify.toml.)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
